@@ -25,12 +25,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiff", "NetDiff\NetDiff\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDiff.Test", "NetDiff\NetDiff.Test\NetDiff.Test.csproj", "{AAFA1775-1F46-4AA5-97D3-DE88D591828D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelMerge.Test", "ExcelMerge.Test\ExcelMerge.Test.csproj", "{0FC48C2D-8C65-4BA5-8926-D7E60F909A53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FC48C2D-8C65-4BA5-8926-D7E60F909A53}.Debug|Any CPU.ActiveCfg = Debug|AnyCPU
+		{0FC48C2D-8C65-4BA5-8926-D7E60F909A53}.Debug|Any CPU.Build.0 = Debug|AnyCPU
+		{0FC48C2D-8C65-4BA5-8926-D7E60F909A53}.Release|Any CPU.ActiveCfg = Release|AnyCPU
+		{0FC48C2D-8C65-4BA5-8926-D7E60F909A53}.Release|Any CPU.Build.0 = Release|AnyCPU
 		{BFF4C33C-7395-4428-8587-AA22062E4A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFF4C33C-7395-4428-8587-AA22062E4A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFF4C33C-7395-4428-8587-AA22062E4A24}.Release|Any CPU.ActiveCfg = Release|Any CPU

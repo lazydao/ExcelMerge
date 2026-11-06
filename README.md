@@ -142,6 +142,33 @@ The format can be changed from "differential extraction setting".
 ![](https://github.com/skanmera/ExcelMerge/blob/media/media/log.png)
 
 
+## Building and testing
+
+Use a Visual Studio Developer Command Prompt with the .NET Framework 4.0, 4.5,
+and 4.5.2 targeting packs required by the existing projects:
+
+```bat
+nuget restore ExcelMerge.sln
+msbuild ExcelMerge.GUI\ExcelMerge.GUI.csproj /p:Configuration=Release
+msbuild ExcelMerge.Test\ExcelMerge.Test.csproj /p:Configuration=Release
+msbuild NetDiff\NetDiff.Test\NetDiff.Test.csproj /p:Configuration=Release
+vstest.console ExcelMerge.Test\bin\Release\ExcelMerge.Test.dll NetDiff\NetDiff.Test\bin\Release\NetDiff.Test.dll
+```
+
+The workbook regression tests generate their own small files, including an XLS
+file with cells on a row whose BIFF ROW record is missing. They exercise sheet
+listing, cell reading, diff extraction, XLSX compatibility, and file handle cleanup.
+No private workbook or Microsoft Excel installation is required for these tests.
+
+NPOI 2.4.1 includes the missing-row compatibility fix. The references deliberately
+use its `net40` assemblies to retain the existing SharpZipLib 0.86 dependency and
+.NET Framework targets.
+
+For portable distribution, include the entire `ExcelMerge.GUI\bin\Release`
+runtime directory, including DLLs, `ExcelMerge.GUI.exe.config`, and language
+subdirectories. PDB and XML documentation files are optional. See
+[the Chinese portable usage guide](docs/portable-usage.zh-CN.md) for TortoiseSVN setup.
+
 ## Known problems
 
 - <h4>If there are column deletions or additions, they may not be displayed at the expected position.</h4>

@@ -22,14 +22,21 @@ namespace ExcelMerge
                 return CreateFromTsv(path, config);
 
             var srcWb = WorkbookFactory.Create(path);
-            var wb = new ExcelWorkbook();
-            for (int i = 0; i < srcWb.NumberOfSheets; i++)
+            try
             {
-                var srcSheet = srcWb.GetSheetAt(i);
-                wb.Sheets.Add(srcSheet.SheetName, ExcelSheet.Create(srcSheet, config));
-            }
+                var wb = new ExcelWorkbook();
+                for (int i = 0; i < srcWb.NumberOfSheets; i++)
+                {
+                    var srcSheet = srcWb.GetSheetAt(i);
+                    wb.Sheets.Add(srcSheet.SheetName, ExcelSheet.Create(srcSheet, config));
+                }
 
-            return wb;
+                return wb;
+            }
+            finally
+            {
+                srcWb.Close();
+            }
         }
 
         public static IEnumerable<string> GetSheetNames(string path)
@@ -45,8 +52,15 @@ namespace ExcelMerge
             else
             {
                 var wb = WorkbookFactory.Create(path);
-                for (int i = 0; i < wb.NumberOfSheets; i++)
-                    yield return wb.GetSheetAt(i).SheetName;
+                try
+                {
+                    for (int i = 0; i < wb.NumberOfSheets; i++)
+                        yield return wb.GetSheetAt(i).SheetName;
+                }
+                finally
+                {
+                    wb.Close();
+                }
             }
         }
 
